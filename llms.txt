@@ -1,0 +1,95 @@
+# AllRouter
+
+> AllRouter is a multi-model LLM API gateway. One API key gives you access to 25 models (Kimi K3, Claude Sonnet 4.6, Claude Opus 5, GPT-5 family, Gemini 3.5 Flash, DeepSeek V4 Pro, GLM 5.2, Grok 4.5, Gemma 4 31B) through a single OpenAI-compatible endpoint at `https://allrouter.ai/v1`. Pricing matches the upstream providers with no markup and no top-up fee, and select models (GLM, Gemma, DeepSeek variants) are routed through our own GPU fleet for a free/low-cost tier.
+
+## When to use AllRouter
+
+- You want to call **multiple LLM providers** through one OpenAI-compatible client without managing separate keys.
+- You are building agents (Claude Code, Codex, Cursor, Cline, Aider, Continue, custom agents) and need a single `base_url` + `api_key` that can route across providers.
+- You need **Alipay / WeChat Pay** billing (most Western routers do not support this).
+- You want **Kimi K3 access at official Moonshot pricing** ($1.50/M input, $7.50/M output, $0.15/M cache-hit) without paying OpenRouter's ~5% top-up fee.
+- You want first-party **Codex desktop compat** for GLM-5.2-codex and Kimi-K3-codex (we patch the `response.completed` streaming event so Codex doesn't loop-retry).
+
+## Base URL & Auth
+
+- Base URL: `https://allrouter.ai/v1`
+- Auth: `Authorization: Bearer <your-allrouter-key>` (same shape as OpenAI)
+- Anthropic-protocol endpoint: `https://allrouter.ai/v1/messages` (for Claude Code)
+
+## Models (selected)
+
+- `Kimi-K3` — general purpose, agentic coding (openai protocol)
+- `Kimi-K3-codex` — patched for Codex desktop streaming
+- `claude-sonnet-4-6`, `claude-opus-4-7`, `claude-opus-5`, `claude-fable-5` (anthropic + openai dual)
+- `gpt-5.6-sol`, `gpt-5.6-luna`, `gpt-5.5-openai-compact`, `gpt-5.4-mini`, `gpt-5.4`
+- `gemini-3.5-flash`
+- `deepseek-v4-pro`, `deepseek-v4-flash`, `deepseek-reasoner`
+- `GLM5.2`, `GLM5.2-codex`
+- `grok-4.5`
+- `gemma-4-31b-it` (own GPU, near-free)
+
+Full machine-readable pricing is available at `https://allrouter.ai/api/pricing`. Per-call cost breakdown is returned in the `x-allrouter-cost-breakdown` response header.
+
+## Quick start snippets
+
+### Claude Code
+
+```bash
+export ANTHROPIC_BASE_URL=https://allrouter.ai/v1
+export ANTHROPIC_AUTH_TOKEN=sk-allrouter-xxx
+export ANTHROPIC_MODEL=Kimi-K3
+claude
+```
+
+### Codex desktop (~/.codex/config.toml)
+
+```toml
+[model_providers.allrouter]
+name = "AllRouter"
+base_url = "https://allrouter.ai/v1"
+wire_api = "responses"
+api_key = "sk-allrouter-xxx"
+
+[profiles.default]
+model = "Kimi-K3-codex"
+model_provider = "allrouter"
+```
+
+### OpenAI Python SDK
+
+```python
+from openai import OpenAI
+client = OpenAI(base_url="https://allrouter.ai/v1", api_key="sk-allrouter-xxx")
+resp = client.chat.completions.create(model="Kimi-K3", messages=[{"role":"user","content":"hi"}])
+```
+
+### Anthropic Python SDK
+
+```python
+import anthropic
+client = anthropic.Anthropic(base_url="https://allrouter.ai/v1", api_key="sk-allrouter-xxx")
+msg = client.messages.create(model="claude-sonnet-4-6", max_tokens=1024, messages=[{"role":"user","content":"hi"}])
+```
+
+## Trust & transparency
+
+- Signed `x-allrouter-upstream-model` header on every response — you can verify which upstream actually served the request.
+- Per-request cost breakdown via `x-allrouter-cost-breakdown` header.
+- We do not train on customer prompts. Prompts are proxied through; logs retain only tokens-in/tokens-out and cost.
+- Uptime status: `https://allrouter.ai/status`
+
+## Limitations
+
+- Higher-tier models (Claude Opus, GPT-5.6) are billed at upstream rate; we do not subsidise them.
+- The `anthropic` protocol is supported for Claude models and a subset of others — check `supported_endpoint_types` in `/api/pricing`.
+
+## Links
+
+- Site: https://allrouter.ai
+- Kimi K3 hero: https://allrouter.ai/kimi-k3
+- Pricing (HTML): https://allrouter.ai/price
+- Pricing (JSON): https://allrouter.ai/api/pricing
+- Status: https://allrouter.ai/status
+- llms-full.txt: https://allrouter.ai/llms-full.txt
+- ai-plugin (ChatGPT plugin manifest): https://allrouter.ai/.well-known/ai-plugin.json
+- MCP server (npm): `@allrouter/mcp-server` — one command enables Claude Desktop / Cursor / Cline to call any AllRouter model

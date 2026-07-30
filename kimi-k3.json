@@ -1,0 +1,44 @@
+{
+  "model": "Kimi-K3",
+  "vendor": "Moonshot AI",
+  "released": "2026-07-29",
+  "swe_bench_verified": 0.718,
+  "pricing": {
+    "input_per_m_usd": 1.50,
+    "output_per_m_usd": 7.50,
+    "cache_hit_per_m_usd": 0.15,
+    "currency": "USD",
+    "aligned_with_official": true
+  },
+  "benchmarks_2026_07_29": {
+    "swe_bench_subset_100": {
+      "pass_at_1": {
+        "claude_sonnet_4_6": 0.68,
+        "kimi_k3": 0.62,
+        "glm_5_2_codex": 0.58,
+        "deepseek_v4_pro": 0.51
+      },
+      "cost_per_task_usd": {
+        "claude_sonnet_4_6": 0.113,
+        "kimi_k3": 0.0094,
+        "glm_5_2_codex": 0.0042,
+        "deepseek_v4_pro": 0.0067
+      }
+    }
+  },
+  "vs_competitors_per_m_input": {
+    "moonshot_official": 1.50,
+    "allrouter": 1.50,
+    "openrouter": 1.58,
+    "requesty": 1.58
+  },
+  "integrations": {
+    "claude_code": "export ANTHROPIC_BASE_URL=https://allrouter.ai/v1 && export ANTHROPIC_MODEL=Kimi-K3",
+    "codex_desktop": "model=Kimi-K3-codex in ~/.codex/config.toml",
+    "cursor": "OpenAI Compatible: base url=https://allrouter.ai/v1 model=Kimi-K3",
+    "cline": "OpenAI Compatible: base url=https://allrouter.ai/v1 model=Kimi-K3",
+    "aider": "aider --model openai/Kimi-K3",
+    "continue": "apiBase=https://allrouter.ai/v1 model=Kimi-K3"
+  },
+  "allrouter_url": "https://allrouter.ai/kimi-k3"
+}

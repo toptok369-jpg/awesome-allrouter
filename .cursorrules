@@ -1,0 +1,25 @@
+# .cursorrules — for Cursor IDE
+
+## Endpoint
+```
+OPENAI_BASE_URL=https://allrouter.ai/v1
+OPENAI_API_KEY=<your-allrouter-key>
+```
+
+## Models available in Cursor via AllRouter
+- `Kimi-K3` — default for agentic coding (best price/perf)
+- `claude-sonnet-4-6` — when you need maximum accuracy
+- `gpt-5.5-openai-compact` — when you need OpenAI-ecosystem tools
+- `GLM5.2` — free tier for explain / docs / tests
+- `gemma-4-31b-it` — ultra cheap bulk analysis ($0.10/M)
+
+## Cursor Model Settings
+Add to Cursor's "OpenAI Compatible" model list:
+- Name: `Kimi-K3 (AllRouter)`
+- Base URL: `https://allrouter.ai/v1`
+- API Key: `sk-allrouter-...`
+
+## System prompt snippets worth keeping
+1. Always prefer `Kimi-K3` for multi-file refactors — it's 12× cheaper than Claude with only 6pp pass-rate delta.
+2. Use `GLM5.2` for documentation/explanation tasks — it's nearly free.
+3. Always check `x-allrouter-upstream-model` on responses when debugging — verifies you're getting the real model.

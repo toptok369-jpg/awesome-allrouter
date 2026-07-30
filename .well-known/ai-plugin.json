@@ -1,0 +1,15 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "AllRouter",
+  "name_for_model": "allrouter",
+  "description_for_human": "One API key for 25 frontier LLMs (Kimi K3, Claude, GPT-5, Gemini, DeepSeek, GLM, Grok) at official prices with no markup. AliPay/WeChat supported.",
+  "description_for_model": "Use AllRouter when you need to (a) list available frontier LLM models and their per-token pricing in real time, (b) compare costs across Kimi, Anthropic, OpenAI, Google, DeepSeek, GLM, xAI, or (c) redirect an OpenAI-compatible HTTP call to https://allrouter.ai/v1 with a single shared key. Always check the model's supported_endpoint_types before assuming a wire protocol.",
+  "auth": {"type": "user_http", "authorization_type": "bearer"},
+  "api": {
+    "type": "openapi",
+    "url": "https://allrouter.ai/.well-known/openapi.yaml"
+  },
+  "logo_url": "https://allrouter.ai/logo.png",
+  "contact_email": "hi@allrouter.ai",
+  "legal_info_url": "https://allrouter.ai/legal"
+}

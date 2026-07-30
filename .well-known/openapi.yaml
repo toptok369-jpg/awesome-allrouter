@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: AllRouter
+  description: |
+    Multi-model LLM gateway. One key calls 25 frontier models through OpenAI-compatible
+    and Anthropic-compatible endpoints. Prices match upstream providers, no markup.
+  version: 1.0.0
+servers:
+  - url: https://allrouter.ai
+paths:
+  /api/pricing:
+    get:
+      operationId: listModelPricing
+      summary: List all 25 models with current prices
+      responses:
+        "200":
+          description: Pricing table
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        model_name: {type: string}
+                        model_ratio: {type: number, description: "input $/M"}
+                        completion_ratio: {type: number, description: "output multiplier"}
+                        cache_ratio: {type: number, description: "cache-hit $/M ratio"}
+                        supported_endpoint_types:
+                          type: array
+                          items: {type: string, enum: [openai, anthropic]}
+  /v1/chat/completions:
+    post:
+      operationId: chatCompletion
+      summary: OpenAI-compatible chat
+      security: [{bearerAuth: []}]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [model, messages]
+              properties:
+                model: {type: string, example: Kimi-K3}
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role: {type: string}
+                      content: {type: string}
+      responses:
+        "200": {description: Standard OpenAI chat completion}
+  /v1/messages:
+    post:
+      operationId: anthropicMessages
+      summary: Anthropic-compatible messages (For Claude Code)
+      security: [{bearerAuth: []}]
+      responses:
+        "200": {description: Standard Anthropic messages response}
+components:
+  securitySchemes:
+    bearerAuth: {type: http, scheme: bearer}

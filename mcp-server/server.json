@@ -1,0 +1,43 @@
+{
+  "name": "@allrouter/mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server that lets any MCP client (Claude Desktop, Cursor, Cline) call 25 LLMs via AllRouter",
+  "mcp": {
+    "command": "npx",
+    "args": ["-y", "@allrouter/mcp-server"],
+    "env": {
+      "ALLROUTER_API_KEY": "sk-allrouter-xxx"
+    }
+  },
+  "tools": [
+    {
+      "name": "allrouter_chat",
+      "description": "Send a chat request to any of 25 models via AllRouter",
+      "inputSchema": {
+        "type": "object",
+        "required": ["model", "messages"],
+        "properties": {
+          "model": {"type": "string", "description": "e.g. Kimi-K3, claude-sonnet-4-6"},
+          "messages": {"type": "array", "items": {"type": "object"}}
+        }
+      }
+    },
+    {
+      "name": "allrouter_list_models",
+      "description": "List available models + live pricing from AllRouter",
+      "inputSchema": {"type": "object"}
+    },
+    {
+      "name": "allrouter_pick_model",
+      "description": "Pick the cheapest model that meets a quality bar for a given task type (chat, code, vision, reasoning)",
+      "inputSchema": {
+        "type": "object",
+        "required": ["task_type"],
+        "properties": {
+          "task_type": {"type": "string", "enum": ["chat", "code", "vision", "reasoning", "agentic"]},
+          "max_cost_per_m_input": {"type": "number"}
+        }
+      }
+    }
+  ]
+}

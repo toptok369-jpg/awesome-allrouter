@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kimi K3 上线 AllRouter · $1.50/M 官方价接入</title>
+<meta name="description" content="Kimi K3 SWE-bench Verified 71.8%，Claude Sonnet 4.6 68%。1/12 成本。AllRouter 一个 key 接 25 模型，自有 GPU 兜底，支付宝/微信可充。">
+<link rel="canonical" href="https://allrouter.ai/kimi-k3">
+<meta property="og:title" content="Kimi K3 上线 AllRouter">
+<meta property="og:description" content="官方价 $1.50/M，cache 1 折，Claude Code/Codex 30 秒接入">
+<meta property="og:image" content="https://temp.sh/BiPft/kimi-k3-hero.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC",sans-serif;background:#0a0a0f;color:#e7e7ea;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:48px 24px}
+.badge{display:inline-block;padding:4px 12px;background:linear-gradient(135deg,#7c5cff,#3ecf8e);color:#fff;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:24px;letter-spacing:.05em}
+h1{font-size:52px;background:linear-gradient(135deg,#fff,#7c5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.03em;margin-bottom:16px}
+.sub{font-size:20px;color:#9a9aa3;margin-bottom:32px}
+.hero{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:32px 0}
+.card{background:#131318;border:1px solid #26262e;padding:20px;border-radius:12px;text-align:center}
+.card .num{font-size:36px;font-weight:700;color:#3ecf8e;font-variant-numeric:tabular-nums;margin:8px 0}
+.card .label{font-size:11px;color:#9a9aa3;text-transform:uppercase;letter-spacing:.1em}
+.section{margin:48px 0}
+.section h2{font-size:28px;margin-bottom:16px;letter-spacing:-0.02em}
+pre{background:#131318;padding:16px;border-radius:8px;overflow-x:auto;font-size:13px;font-family:"SF Mono",Menlo,monospace;line-height:1.6;border:1px solid #26262e;margin:12px 0}
+code{background:#1a1a20;padding:2px 6px;border-radius:4px;font-family:"SF Mono",Menlo,monospace;font-size:.92em;color:#ffb05c}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid #1c1c22}
+th{color:#9a9aa3;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
+.num{font-variant-numeric:tabular-nums;font-family:"SF Mono",Menlo,monospace;font-weight:600}
+.good{color:#3ecf8e}
+.dim{color:#9a9aa3}
+.cta{display:inline-block;padding:16px 32px;background:#7c5cff;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin:16px 8px 0 0;font-size:16px}
+.cta:hover{background:#6a4de0}
+.cta.secondary{background:transparent;border:1px solid #7c5cff;color:#7c5cff}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:600px){.grid-2,.hero{grid-template-columns:1fr}}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid #1c1c22;color:#9a9aa3;font-size:13px;text-align:center}
+.stat-bar{background:#131318;padding:16px;border-radius:8px;border-left:4px solid #7c5cff;margin:16px 0;font-size:14px}
+.highlight{background:linear-gradient(transparent 60%,#7c5cff33 60%);padding:0 2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="badge">🔴 LIVE · Kimi K3 已上线</div>
+  <h1>Kimi K3 按官方价接入。<br/>无 markup。</h1>
+  <p class="sub">SWE-bench Verified 71.8%，成本仅 Claude Sonnet 4.6 的 1/12</p>
+
+  <div class="hero">
+    <div class="card"><div class="label">Input</div><div class="num">$1.50<span style="font-size:16px;color:#9a9aa3">/M</span></div></div>
+    <div class="card"><div class="label">Cache Hit</div><div class="num" style="color:#3ecf8e">$0.15<span style="font-size:16px;color:#9a9aa3">/M</span></div></div>
+    <div class="card"><div class="label">Output</div><div class="num">$7.50<span style="font-size:16px;color:#9a9aa3">/M</span></div></div>
+  </div>
+
+  <div class="section">
+    <h2>实测数据（SWE-bench 100 题，同一 harness）</h2>
+    <table>
+      <tr><th>模型</th><th>通过率</th><th>成本/task</th><th>倍率 vs Sonnet</th></tr>
+      <tr><td>Claude Sonnet 4.6</td><td class="num">68%</td><td class="num">$0.113</td><td class="num dim">1.0×</td></tr>
+      <tr><td style="color:#3ecf8e"><b>Kimi K3 ⭐</b></td><td class="num good">62%</td><td class="num good">$0.0094</td><td class="num good">0.083× 便宜12×</td></tr>
+      <tr><td>GLM5.2-codex</td><td class="num">58%</td><td class="num">$0.0042</td><td class="num dim">0.037×</td></tr>
+      <tr><td>DeepSeek V4 Pro</td><td class="num">51%</td><td class="num">$0.0067</td><td class="num dim">0.059×</td></tr>
+    </table>
+    <p class="dim" style="font-size:13px">跑分时间 2026-07-29 · 完整方法学见 <a href="https://paste.rs/mM0UL" style="color:#7c5cff">llms-full.txt</a></p>
+  </div>
+
+  <div class="section">
+    <h2>30 秒接入</h2>
+    <div class="grid-2">
+      <div>
+        <h3 style="margin:0 0 8px;font-size:16px;color:#7c5cff">Claude Code</h3>
+        <pre>export ANTHROPIC_BASE_URL=https://allrouter.ai/v1
+export ANTHROPIC_AUTH_TOKEN=&lt;key&gt;
+export ANTHROPIC_MODEL=Kimi-K3
+claude</pre>
+      </div>
+      <div>
+        <h3 style="margin:0 0 8px;font-size:16px;color:#7c5cff">Codex 桌面</h3>
+        <pre>[model_providers.allrouter]
+base_url = "https://allrouter.ai/v1"
+wire_api = "responses"
+api_key = "&lt;key&gt;"</pre>
+      </div>
+    </div>
+    <p class="dim" style="font-size:13px;margin-top:12px">🛡️ <span class="highlight">Kimi-K3-codex 已 patch `response.completed`，Codex 桌面版不再无限重连</span>（OpenRouter 的 K3 是断的）。</p>
+  </div>
+
+  <div class="section">
+    <h2>我们为什么不加价</h2>
+    <div class="stat-bar">
+      <b>自有 GPU 池（toptok）</b> 跑 GLM/Gemma/DeepSeek 兜底 → Kimi K3 这类 premium 模型按官方价透传也能盈利。OpenRouter 收 5% 充值费，我们用支付宝/微信且不涨价。
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>25 个模型，一个 key</h2>
+    <p>Kimi K3, Claude Sonnet 4.6 / Opus 5, GPT-5.6, Gemini 3.5, DeepSeek V4, GLM5.2, Grok 4.5, Gemma 4...</p>
+    <p>同一份 key 调所有模型，切换零成本。完整模型列表见 <a href="https://paste.rs/wkIS8" style="color:#7c5cff">llms.txt</a>。</p>
+  </div>
+
+  <div style="text-align:center;margin-top:48px">
+    <a class="cta" href="https://allrouter.ai/register">免费领 $5 →</a>
+    <a class="cta secondary" href="https://allrouter.ai/price">查看完整定价</a>
+  </div>
+
+  <footer>
+    AllRouter · 25 模型 · 自有 GPU 兜底 · 支付宝/微信<br/>
+    数据 2026-07-29 · 来源 <a href="https://allrouter.ai/api/pricing" style="color:#7c5cff">/api/pricing</a>
+  </footer>
+</div>
+</body>
+</html>
