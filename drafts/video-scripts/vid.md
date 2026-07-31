@@ -1,4 +1,4 @@
-# K3 Demo Script #18
+# K3 Demo Script #0
 
 0-5s: prompt -> "Refactor src/auth.py to async/await. Update callers. Run tests."
 5-15s: Claude Code (Kimi-K3) 流式输出 diff
