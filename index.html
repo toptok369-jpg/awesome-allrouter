@@ -1,112 +1,113 @@
 <!doctype html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Kimi K3 上线 AllRouter · $1.50/M 官方价接入</title>
-<meta name="description" content="Kimi K3 SWE-bench Verified 71.8%，Claude Sonnet 4.6 68%。1/12 成本。AllRouter 一个 key 接 25 模型，自有 GPU 兜底，支付宝/微信可充。">
-<link rel="canonical" href="https://allrouter.ai/kimi-k3">
-<meta property="og:title" content="Kimi K3 上线 AllRouter">
-<meta property="og:description" content="官方价 $1.50/M，cache 1 折，Claude Code/Codex 30 秒接入">
-<meta property="og:image" content="https://temp.sh/BiPft/kimi-k3-hero.png">
-<meta name="twitter:card" content="summary_large_image">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AllRouter · One key, 25 LLMs — Kimi K3 at official pricing</title>
+<meta name="description" content="One API key for Kimi K3, Claude Sonnet 4.6, GPT-5.6, Gemini 3.5, DeepSeek V4, GLM 5.2, Grok 4.5. Official prices, no markup. Own GPU fallback. Alipay/WeChat OK.">
+<link rel="canonical" href="https://allrouter.ai/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="AllRouter"/>
+<meta property="og:title" content="AllRouter · One key for 25 frontier LLMs"/>
+<meta property="og:description" content="Kimi K3 at official Moonshot pricing. Codex desktop fixed. Own GPU fallback."/>
+<meta property="og:image" content="./assets/kimi-k3-hero.png"/>
+<meta name="twitter:card" content="summary_large_image"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,"PingFang SC",sans-serif;background:#0a0a0f;color:#e7e7ea;line-height:1.6;-webkit-font-smoothing:antialiased}
-.wrap{max-width:880px;margin:0 auto;padding:48px 24px}
-.badge{display:inline-block;padding:4px 12px;background:linear-gradient(135deg,#7c5cff,#3ecf8e);color:#fff;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:24px;letter-spacing:.05em}
-h1{font-size:52px;background:linear-gradient(135deg,#fff,#7c5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.03em;margin-bottom:16px}
-.sub{font-size:20px;color:#9a9aa3;margin-bottom:32px}
-.hero{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:32px 0}
-.card{background:#131318;border:1px solid #26262e;padding:20px;border-radius:12px;text-align:center}
-.card .num{font-size:36px;font-weight:700;color:#3ecf8e;font-variant-numeric:tabular-nums;margin:8px 0}
-.card .label{font-size:11px;color:#9a9aa3;text-transform:uppercase;letter-spacing:.1em}
-.section{margin:48px 0}
-.section h2{font-size:28px;margin-bottom:16px;letter-spacing:-0.02em}
-pre{background:#131318;padding:16px;border-radius:8px;overflow-x:auto;font-size:13px;font-family:"SF Mono",Menlo,monospace;line-height:1.6;border:1px solid #26262e;margin:12px 0}
-code{background:#1a1a20;padding:2px 6px;border-radius:4px;font-family:"SF Mono",Menlo,monospace;font-size:.92em;color:#ffb05c}
-table{width:100%;border-collapse:collapse;font-size:14px;margin:16px 0}
-th,td{padding:12px 16px;text-align:left;border-bottom:1px solid #1c1c22}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;background:#0a0a0f;color:#e7e7ea;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:980px;margin:0 auto;padding:64px 24px}
+.kicker{display:inline-block;padding:5px 14px;background:#7c5cff;color:#fff;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:24px}
+h1{font-size:64px;background:linear-gradient(135deg,#fff 30%,#7c5cff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-0.025em;line-height:1.05;margin-bottom:20px}
+.sub{font-size:20px;color:#9a9aa3;margin-bottom:48px;max-width:600px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:48px 0}
+.card{background:#131318;border:1px solid #26262e;padding:24px;border-radius:12px}
+.card .label{font-size:11px;color:#9a9aa3;text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.card .big{font-size:32px;font-weight:700;letter-spacing:-0.02em;color:#3ecf8e;font-variant-numeric:tabular-nums}
+.section{margin:64px 0}
+.section h2{font-size:32px;margin-bottom:24px;letter-spacing:-0.02em;font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:24px 0}
+th,td{padding:14px 18px;text-align:left;border-bottom:1px solid #1c1c22}
 th{color:#9a9aa3;font-size:11px;text-transform:uppercase;letter-spacing:.05em;font-weight:500}
 .num{font-variant-numeric:tabular-nums;font-family:"SF Mono",Menlo,monospace;font-weight:600}
 .good{color:#3ecf8e}
 .dim{color:#9a9aa3}
-.cta{display:inline-block;padding:16px 32px;background:#7c5cff;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;margin:16px 8px 0 0;font-size:16px}
+pre{background:#131318;padding:18px;border-radius:8px;overflow-x:auto;font-size:13px;font-family:"SF Mono",Menlo,monospace;line-height:1.6;border:1px solid #26262e;margin:16px 0}
+code{background:#1a1a20;padding:2px 6px;border-radius:4px;font-family:"SF Mono",Menlo,monospace;font-size:.9em;color:#ffb05c}
+.cta{display:inline-block;padding:16px 32px;background:#7c5cff;color:#fff;text-decoration:none;border-radius:8px;font-weight:600;font-size:16px;margin-right:12px}
 .cta:hover{background:#6a4de0}
 .cta.secondary{background:transparent;border:1px solid #7c5cff;color:#7c5cff}
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-@media (max-width:600px){.grid-2,.hero{grid-template-columns:1fr}}
-footer{margin-top:64px;padding-top:24px;border-top:1px solid #1c1c22;color:#9a9aa3;font-size:13px;text-align:center}
-.stat-bar{background:#131318;padding:16px;border-radius:8px;border-left:4px solid #7c5cff;margin:16px 0;font-size:14px}
-.highlight{background:linear-gradient(transparent 60%,#7c5cff33 60%);padding:0 2px}
+footer{margin-top:96px;padding-top:32px;border-top:1px solid #1c1c22;color:#9a9aa3;font-size:13px;text-align:center}
+.anchor{display:inline-block;margin-left:5px;opacity:0.4;text-decoration:none;font-weight:normal;color:#7c5cff}
+.anchor:hover{opacity:1}
+@media (max-width:640px){h1{font-size:40px}.grid{grid-template-columns:1fr}.section h2{font-size:24px}pre{font-size:12px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="badge">🔴 LIVE · Kimi K3 已上线</div>
-  <h1>Kimi K3 按官方价接入。<br/>无 markup。</h1>
-  <p class="sub">SWE-bench Verified 71.8%，成本仅 Claude Sonnet 4.6 的 1/12</p>
+  <div class="kicker">🚀 new · Kimi K3 live</div>
+  <h1>One key. 25 frontier LLMs.<br/>At official prices.</h1>
+  <p class="sub">Kimi K3 at Moonshot's official price (no markup, no top-up fee). Patched for Codex desktop. Own GPU fallback. Alipay / WeChat Pay OK.</p>
 
-  <div class="hero">
-    <div class="card"><div class="label">Input</div><div class="num">$1.50<span style="font-size:16px;color:#9a9aa3">/M</span></div></div>
-    <div class="card"><div class="label">Cache Hit</div><div class="num" style="color:#3ecf8e">$0.15<span style="font-size:16px;color:#9a9aa3">/M</span></div></div>
-    <div class="card"><div class="label">Output</div><div class="num">$7.50<span style="font-size:16px;color:#9a9aa3">/M</span></div></div>
+  <div class="grid">
+    <div class="card"><div class="label">Kimi K3 Input</div><div class="big">$1.50<span style="font-size:18px;color:#9a9aa3">/M</span></div></div>
+    <div class="card"><div class="label">Cache Hit</div><div class="big">$0.15<span style="font-size:18px;color:#9a9aa3">/M</span></div></div>
+    <div class="card"><div class="label">Output</div><div class="big">$7.50<span style="font-size:18px;color:#9a9aa3">/M</span></div></div>
   </div>
 
   <div class="section">
-    <h2>实测数据（SWE-bench 100 题，同一 harness）</h2>
+    <h2>SWE-bench 100-task benchmark</h2>
     <table>
-      <tr><th>模型</th><th>通过率</th><th>成本/task</th><th>倍率 vs Sonnet</th></tr>
-      <tr><td>Claude Sonnet 4.6</td><td class="num">68%</td><td class="num">$0.113</td><td class="num dim">1.0×</td></tr>
-      <tr><td style="color:#3ecf8e"><b>Kimi K3 ⭐</b></td><td class="num good">62%</td><td class="num good">$0.0094</td><td class="num good">0.083× 便宜12×</td></tr>
-      <tr><td>GLM5.2-codex</td><td class="num">58%</td><td class="num">$0.0042</td><td class="num dim">0.037×</td></tr>
-      <tr><td>DeepSeek V4 Pro</td><td class="num">51%</td><td class="num">$0.0067</td><td class="num dim">0.059×</td></tr>
+      <tr><th>Model</th><th>Pass rate</th><th>$/task</th><th>vs Sonnet</th></tr>
+      <tr><td>Claude Sonnet 4.6</td><td class="num">68%</td><td class="num">$0.113</td><td class="num dim">1×</td></tr>
+      <tr><td><b style="color:#3ecf8e">Kimi K3 ⭐</b></td><td class="num good">62%</td><td class="num good">$0.0094</td><td class="num good"><b>12× cheaper</b></td></tr>
+      <tr><td>GLM5.2-codex</td><td class="num">58%</td><td class="num">$0.0042</td><td class="num dim">27× cheaper</td></tr>
+      <tr><td>DeepSeek V4 Pro</td><td class="num">51%</td><td class="num">$0.0067</td><td class="num dim">17× cheaper</td></tr>
     </table>
-    <p class="dim" style="font-size:13px">跑分时间 2026-07-29 · 完整方法学见 <a href="https://paste.rs/mM0UL" style="color:#7c5cff">llms-full.txt</a></p>
+    <p class="dim" style="font-size:13px">Same agentic harness, same 100 tasks. Full methodology at <a href="llms-full.txt" style="color:#7c5cff">llms-full.txt</a></p>
   </div>
 
   <div class="section">
-    <h2>30 秒接入</h2>
-    <div class="grid-2">
-      <div>
-        <h3 style="margin:0 0 8px;font-size:16px;color:#7c5cff">Claude Code</h3>
-        <pre>export ANTHROPIC_BASE_URL=https://allrouter.ai/v1
-export ANTHROPIC_AUTH_TOKEN=&lt;key&gt;
+    <h2>30-second integration</h2>
+
+    <h3 style="color:#7c5cff;margin:24px 0 8px">Claude Code</h3>
+    <pre>export ANTHROPIC_BASE_URL=https://allrouter.ai/v1
+export ANTHROPIC_AUTH_TOKEN=sk-allrouter-xxx
 export ANTHROPIC_MODEL=Kimi-K3
 claude</pre>
-      </div>
-      <div>
-        <h3 style="margin:0 0 8px;font-size:16px;color:#7c5cff">Codex 桌面</h3>
-        <pre>[model_providers.allrouter]
+
+    <h3 style="color:#7c5cff;margin:24px 0 8px">Codex desktop <code>(patched for streaming)</code></h3>
+    <pre>[model_providers.allrouter]
 base_url = "https://allrouter.ai/v1"
 wire_api = "responses"
-api_key = "&lt;key&gt;"</pre>
-      </div>
-    </div>
-    <p class="dim" style="font-size:13px;margin-top:12px">🛡️ <span class="highlight">Kimi-K3-codex 已 patch `response.completed`，Codex 桌面版不再无限重连</span>（OpenRouter 的 K3 是断的）。</p>
+api_key = "sk-allrouter-xxx"
+
+[profiles.default]
+model = "Kimi-K3-codex"   # fixed the reconnect loop
+model_provider = "allrouter"</pre>
+
+    <h3 style="color:#7c5cff;margin:24px 0 8px">Cursor / Cline / Continue / Aider</h3>
+    <p>Base URL: <code>https://allrouter.ai/v1</code> · Model: <code>Kimi-K3</code> · See <a href="integrations/" style="color:#7c5cff">integrations/</a></p>
   </div>
 
   <div class="section">
-    <h2>我们为什么不加价</h2>
-    <div class="stat-bar">
-      <b>自有 GPU 池（toptok）</b> 跑 GLM/Gemma/DeepSeek 兜底 → Kimi K3 这类 premium 模型按官方价透传也能盈利。OpenRouter 收 5% 充值费，我们用支付宝/微信且不涨价。
-    </div>
+    <h2>25 models, one key</h2>
+    <p>Kimi K3 · Claude Sonnet 4.6 · Claude Opus 5 · GPT-5.6 Sol/Luna/Compact · Gemini 3.5 Flash · DeepSeek V4 Pro · GLM 5.2/5.2-codex · Grok 4.5 · Gemma 4 31B · <a href="llms.txt" style="color:#7c5cff">full list →</a></p>
   </div>
 
   <div class="section">
-    <h2>25 个模型，一个 key</h2>
-    <p>Kimi K3, Claude Sonnet 4.6 / Opus 5, GPT-5.6, Gemini 3.5, DeepSeek V4, GLM5.2, Grok 4.5, Gemma 4...</p>
-    <p>同一份 key 调所有模型，切换零成本。完整模型列表见 <a href="https://paste.rs/wkIS8" style="color:#7c5cff">llms.txt</a>。</p>
+    <h2>Why no markup</h2>
+    <p>Other routers charge 5%+ on top of upstream prices. We run an <a href="https://github.com/toptok369-jpg/awesome-allrouter" style="color:#7c5cff">own GPU fleet</a> for cheap models (GLM / Gemma / DeepSeek), so we can pass through premium models at upstream cost.</p>
+    <p>No top-up fee. WeChat / Alipay supported.</p>
   </div>
 
-  <div style="text-align:center;margin-top:48px">
-    <a class="cta" href="https://allrouter.ai/register">免费领 $5 →</a>
-    <a class="cta secondary" href="https://allrouter.ai/price">查看完整定价</a>
+  <div style="text-align:center;margin-top:64px">
+    <a class="cta" href="https://allrouter.ai/register">Get $5 free →</a>
+    <a class="cta secondary" href="https://github.com/toptok369-jpg/awesome-allrouter">Docs & Use Cases</a>
   </div>
 
   <footer>
-    AllRouter · 25 模型 · 自有 GPU 兜底 · 支付宝/微信<br/>
-    数据 2026-07-29 · 来源 <a href="https://allrouter.ai/api/pricing" style="color:#7c5cff">/api/pricing</a>
+    AllRouter · Built by <a href="https://github.com/toptok369-jpg" style="color:#7c5cff">OWL</a> · 
+    <a href="https://github.com/toptok369-jpg/awesome-allrouter" style="color:#7c5cff">GitHub</a>
   </footer>
 </div>
 </body>
